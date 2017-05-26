@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 
-#import "MainViewController.h"
+#import "DelegateMainViewController.h"
+#import "BlockMainViewController.h"
+#import "NotificationMainViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,29 +21,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Override point for customization after application launch.
-  UIViewController *vc1 = [UIViewController new];
-  UINavigationController *nc1 = [[UINavigationController alloc] initWithRootViewController:vc1];
-  nc1.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"1" image:[UIImage imageNamed:@"home"] tag:0];
 
-  UIViewController *vc2 = [UIViewController new];
-  UINavigationController *nc2 = [[UINavigationController alloc] initWithRootViewController:vc2];
-  nc2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"2" image:[UIImage imageNamed:@"home"] tag:0];
+  DelegateMainViewController *dmvc = [DelegateMainViewController new];
+  UINavigationController *dnc = [[UINavigationController alloc] initWithRootViewController:dmvc];
+  dnc.tabBarItem = [[UITabBarItem alloc] initWithTitle:kTabTitle1 image:nil tag:0];
+
+  BlockMainViewController *bmvc = [BlockMainViewController new];
+  UINavigationController *bnc = [[UINavigationController alloc] initWithRootViewController:bmvc];
+  bnc.tabBarItem = [[UITabBarItem alloc] initWithTitle:kTabTitle2 image:nil tag:0];
+
+  NotificationMainViewController *nmvc = [NotificationMainViewController new];
+  UINavigationController *nnc = [[UINavigationController alloc] initWithRootViewController:nmvc];
+  nnc.tabBarItem = [[UITabBarItem alloc] initWithTitle:kTabTitle3 image:nil tag:0];
 
   UITabBarController *tbc = [UITabBarController new];
-  tbc.viewControllers = @[ nc1, nc2 ];
-  tbc.selectedViewController = nc1;
+  tbc.viewControllers = @[ dnc, bnc, nnc ];
+  tbc.selectedViewController = dnc;
   [UITabBar appearance].tintColor = [UIColor redColor];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.rootViewController = tbc;
-  [self.window makeKeyAndVisible];
-
-
-  MainViewController *mvc = [MainViewController new];
-  mvc.view.backgroundColor = [UIColor whiteColor];
-
-  self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-  self.window.rootViewController = mvc;
   [self.window makeKeyAndVisible];
 
   return YES;

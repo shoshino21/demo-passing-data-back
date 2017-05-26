@@ -7,17 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF475FF91ED7D3CD00B3AA32 /* InputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF475FF81ED7D3CD00B3AA32 /* InputViewController.m */; };
+		EFE8310C1ED838DA0074E823 /* DelegateMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE8310B1ED838DA0074E823 /* DelegateMainViewController.m */; };
+		EFE831121ED838F10074E823 /* BlockMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE831111ED838F10074E823 /* BlockMainViewController.m */; };
+		EFE831181ED83A0C0074E823 /* DelegateJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE831171ED83A0C0074E823 /* DelegateJobViewController.m */; };
+		EFE8311B1ED83A280074E823 /* DelegateNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE8311A1ED83A280074E823 /* DelegateNameViewController.m */; };
+		EFE8311F1ED83A430074E823 /* BlockNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE8311E1ED83A430074E823 /* BlockNameViewController.m */; };
+		EFE831221ED83A4C0074E823 /* BlockJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE831211ED83A4C0074E823 /* BlockJobViewController.m */; };
+		EFE831261ED83A5F0074E823 /* NotificationMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE831251ED83A5F0074E823 /* NotificationMainViewController.m */; };
+		EFE831291ED83A6C0074E823 /* NotificationNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE831281ED83A6C0074E823 /* NotificationNameViewController.m */; };
+		EFE8312C1ED83A760074E823 /* NotificationJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE8312B1ED83A760074E823 /* NotificationJobViewController.m */; };
 		EFFC747A1ED7CB1E004814DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFC74791ED7CB1E004814DB /* main.m */; };
 		EFFC747D1ED7CB1E004814DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFC747C1ED7CB1E004814DB /* AppDelegate.m */; };
 		EFFC74851ED7CB1E004814DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFFC74841ED7CB1E004814DB /* Assets.xcassets */; };
 		EFFC74881ED7CB1E004814DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFFC74861ED7CB1E004814DB /* LaunchScreen.storyboard */; };
-		EFFC74911ED7CB4F004814DB /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFC74901ED7CB4F004814DB /* MainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EF475FF71ED7D3CD00B3AA32 /* InputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputViewController.h; sourceTree = "<group>"; };
-		EF475FF81ED7D3CD00B3AA32 /* InputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputViewController.m; sourceTree = "<group>"; };
+		EFE8310A1ED838DA0074E823 /* DelegateMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateMainViewController.h; sourceTree = "<group>"; };
+		EFE8310B1ED838DA0074E823 /* DelegateMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateMainViewController.m; sourceTree = "<group>"; };
+		EFE831101ED838F10074E823 /* BlockMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockMainViewController.h; sourceTree = "<group>"; };
+		EFE831111ED838F10074E823 /* BlockMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockMainViewController.m; sourceTree = "<group>"; };
+		EFE831161ED83A0C0074E823 /* DelegateJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateJobViewController.h; sourceTree = "<group>"; };
+		EFE831171ED83A0C0074E823 /* DelegateJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateJobViewController.m; sourceTree = "<group>"; };
+		EFE831191ED83A280074E823 /* DelegateNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelegateNameViewController.h; sourceTree = "<group>"; };
+		EFE8311A1ED83A280074E823 /* DelegateNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelegateNameViewController.m; sourceTree = "<group>"; };
+		EFE8311D1ED83A430074E823 /* BlockNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockNameViewController.h; sourceTree = "<group>"; };
+		EFE8311E1ED83A430074E823 /* BlockNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockNameViewController.m; sourceTree = "<group>"; };
+		EFE831201ED83A4C0074E823 /* BlockJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockJobViewController.h; sourceTree = "<group>"; };
+		EFE831211ED83A4C0074E823 /* BlockJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockJobViewController.m; sourceTree = "<group>"; };
+		EFE831241ED83A5F0074E823 /* NotificationMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationMainViewController.h; sourceTree = "<group>"; };
+		EFE831251ED83A5F0074E823 /* NotificationMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationMainViewController.m; sourceTree = "<group>"; };
+		EFE831271ED83A6C0074E823 /* NotificationNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationNameViewController.h; sourceTree = "<group>"; };
+		EFE831281ED83A6C0074E823 /* NotificationNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationNameViewController.m; sourceTree = "<group>"; };
+		EFE8312A1ED83A760074E823 /* NotificationJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationJobViewController.h; sourceTree = "<group>"; };
+		EFE8312B1ED83A760074E823 /* NotificationJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationJobViewController.m; sourceTree = "<group>"; };
+		EFE8312E1ED83AC80074E823 /* Sho-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sho-Prefix.pch"; sourceTree = "<group>"; };
+		EFE8312F1ED83B1A0074E823 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		EFE831301ED83C330074E823 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		EFFC74751ED7CB1E004814DB /* demo-passing-data-back.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "demo-passing-data-back.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFFC74791ED7CB1E004814DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EFFC747B1ED7CB1E004814DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -25,8 +51,6 @@
 		EFFC74841ED7CB1E004814DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EFFC74871ED7CB1E004814DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFFC74891ED7CB1E004814DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EFFC748F1ED7CB4F004814DB /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		EFFC74901ED7CB4F004814DB /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +64,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EFE8311C1ED83A340074E823 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				EFE8310A1ED838DA0074E823 /* DelegateMainViewController.h */,
+				EFE8310B1ED838DA0074E823 /* DelegateMainViewController.m */,
+				EFE831191ED83A280074E823 /* DelegateNameViewController.h */,
+				EFE8311A1ED83A280074E823 /* DelegateNameViewController.m */,
+				EFE831161ED83A0C0074E823 /* DelegateJobViewController.h */,
+				EFE831171ED83A0C0074E823 /* DelegateJobViewController.m */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+		EFE831231ED83A510074E823 /* Block */ = {
+			isa = PBXGroup;
+			children = (
+				EFE831101ED838F10074E823 /* BlockMainViewController.h */,
+				EFE831111ED838F10074E823 /* BlockMainViewController.m */,
+				EFE8311D1ED83A430074E823 /* BlockNameViewController.h */,
+				EFE8311E1ED83A430074E823 /* BlockNameViewController.m */,
+				EFE831201ED83A4C0074E823 /* BlockJobViewController.h */,
+				EFE831211ED83A4C0074E823 /* BlockJobViewController.m */,
+			);
+			name = Block;
+			sourceTree = "<group>";
+		};
+		EFE8312D1ED83A7B0074E823 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				EFE831241ED83A5F0074E823 /* NotificationMainViewController.h */,
+				EFE831251ED83A5F0074E823 /* NotificationMainViewController.m */,
+				EFE831271ED83A6C0074E823 /* NotificationNameViewController.h */,
+				EFE831281ED83A6C0074E823 /* NotificationNameViewController.m */,
+				EFE8312A1ED83A760074E823 /* NotificationJobViewController.h */,
+				EFE8312B1ED83A760074E823 /* NotificationJobViewController.m */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
 		EFFC746C1ED7CB1E004814DB = {
 			isa = PBXGroup;
 			children = (
@@ -61,10 +124,9 @@
 			children = (
 				EFFC747B1ED7CB1E004814DB /* AppDelegate.h */,
 				EFFC747C1ED7CB1E004814DB /* AppDelegate.m */,
-				EFFC748F1ED7CB4F004814DB /* MainViewController.h */,
-				EFFC74901ED7CB4F004814DB /* MainViewController.m */,
-				EF475FF71ED7D3CD00B3AA32 /* InputViewController.h */,
-				EF475FF81ED7D3CD00B3AA32 /* InputViewController.m */,
+				EFE8311C1ED83A340074E823 /* Delegate */,
+				EFE831231ED83A510074E823 /* Block */,
+				EFE8312D1ED83A7B0074E823 /* Notification */,
 				EFFC74841ED7CB1E004814DB /* Assets.xcassets */,
 				EFFC74861ED7CB1E004814DB /* LaunchScreen.storyboard */,
 				EFFC74891ED7CB1E004814DB /* Info.plist */,
@@ -77,6 +139,9 @@
 			isa = PBXGroup;
 			children = (
 				EFFC74791ED7CB1E004814DB /* main.m */,
+				EFE8312E1ED83AC80074E823 /* Sho-Prefix.pch */,
+				EFE831301ED83C330074E823 /* Constant.h */,
+				EFE8312F1ED83B1A0074E823 /* Macro.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -151,10 +216,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFE831291ED83A6C0074E823 /* NotificationNameViewController.m in Sources */,
 				EFFC747D1ED7CB1E004814DB /* AppDelegate.m in Sources */,
-				EFFC74911ED7CB4F004814DB /* MainViewController.m in Sources */,
+				EFE8311B1ED83A280074E823 /* DelegateNameViewController.m in Sources */,
+				EFE831121ED838F10074E823 /* BlockMainViewController.m in Sources */,
+				EFE831181ED83A0C0074E823 /* DelegateJobViewController.m in Sources */,
+				EFE8311F1ED83A430074E823 /* BlockNameViewController.m in Sources */,
+				EFE831221ED83A4C0074E823 /* BlockJobViewController.m in Sources */,
+				EFE831261ED83A5F0074E823 /* NotificationMainViewController.m in Sources */,
 				EFFC747A1ED7CB1E004814DB /* main.m in Sources */,
-				EF475FF91ED7D3CD00B3AA32 /* InputViewController.m in Sources */,
+				EFE8312C1ED83A760074E823 /* NotificationJobViewController.m in Sources */,
+				EFE8310C1ED838DA0074E823 /* DelegateMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +336,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/demo-passing-data-back/Sho-Prefix.pch";
 				INFOPLIST_FILE = "demo-passing-data-back/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -276,6 +350,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/demo-passing-data-back/Sho-Prefix.pch";
 				INFOPLIST_FILE = "demo-passing-data-back/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

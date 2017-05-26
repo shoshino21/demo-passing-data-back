@@ -7,20 +7,15 @@
 //
 
 #import "DelegateMainViewController.h"
+#import "DelegateInputViewController.h"
 
-#import "DelegateNameViewController.h"
-#import "DelegateJobViewController.h"
-
-typedef NS_ENUM(NSUInteger, SHOTableSection) {
-  SHOTableSectionName,
-  SHOTableSectionJob
-};
-
-@interface DelegateMainViewController () <UITableViewDataSource, UITableViewDelegate, SHOInputNameDelegate> {
+@interface DelegateMainViewController () <UITableViewDataSource, UITableViewDelegate, SHOInputDelegate> {
   UITableView *_myTableView;
-  NSString *_nameStr;
-  NSString *_jobStr;
+  NSString *_currentName;
+  NSString *_currentJob;
 }
+
+@property (nonatomic, strong) DelegateInputViewController *inputViewCtrl;
 
 @end
 
@@ -44,8 +39,8 @@ typedef NS_ENUM(NSUInteger, SHOTableSection) {
 #pragma mark - Initialize
 
 - (void)initProperties {
-  _nameStr = kDefaultName;
-  _jobStr = kDefaultJob;
+  _currentName = kDefaultName;
+  _currentJob = kDefaultJob;
 }
 
 - (void)initTableView {
@@ -57,7 +52,19 @@ typedef NS_ENUM(NSUInteger, SHOTableSection) {
   [self.view addSubview:_myTableView];
 }
 
-#pragma mark - UITableViewDataSource
+#pragma mark - Custom Accessors
+
+- (DelegateInputViewController *)inputViewCtrl {
+  // Lazy loading
+  if (!_inputViewCtrl) {
+    _inputViewCtrl = [DelegateInputViewController new];
+    _inputViewCtrl.delegate = self;
+  }
+
+  return _inputViewCtrl;
+}
+
+#pragma mark - UITableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 1;
@@ -78,16 +85,15 @@ typedef NS_ENUM(NSUInteger, SHOTableSection) {
 
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-  SHOTableSection section = (SHOTableSection)indexPath.row;
-
-  switch (section) {
-    case SHOTableSectionName:
+  switch (indexPath.row) {
+    case SHOInputTypeName:
       cell.textLabel.text = kFieldTitleName;
-      cell.detailTextLabel.text = _nameStr ?: @"";
+      cell.detailTextLabel.text = _currentName;
       break;
-    case SHOTableSectionJob:
+
+    case SHOInputTypeJob:
       cell.textLabel.text = kFieldTitleJob;
-      cell.detailTextLabel.text = _jobStr ?: @"";
+      cell.detailTextLabel.text = _currentJob;
       break;
   }
 
@@ -95,31 +101,35 @@ typedef NS_ENUM(NSUInteger, SHOTableSection) {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  SHOTableSection section = (SHOTableSection)indexPath.row;
-
-  switch (section) {
-    case SHOTableSectionName: {
-      DelegateNameViewController *nameViewCtrl = [DelegateNameViewController new];
-      nameViewCtrl.delegate = self;
-      [nameViewCtrl settingValue:_nameStr];
-      [self.navigationController pushViewController:nameViewCtrl animated:YES];
+  switch (indexPath.row) {
+    case SHOInputTypeName:
+      [self.inputViewCtrl settingInputType:SHOInputTypeName currentValue:_currentName];
       break;
-    }
 
-    case SHOTableSectionJob: {
-      DelegateJobViewController *jobViewCtrl = [DelegateJobViewController new];
-      [self.navigationController pushViewController:jobViewCtrl animated:YES];
+    case SHOInputTypeJob:
+      [self.inputViewCtrl settingInputType:SHOInputTypeJob currentValue:_currentJob];
       break;
-    }
   }
+
+  [self.navigationController pushViewController:self.inputViewCtrl animated:YES];
 }
 
-#pragma mark - SHOInputNameDelegate
+#pragma mark - SHOInputDelegate
 
-- (void)viewController:(DelegateNameViewController *)aViewCtrl
-    didFinishInputName:(NSString *)inputedName
+- (void)viewController:(DelegateInputViewController *)aViewCtrl
+    didFinishInputting:(NSString *)inputedValue
+             inputType:(SHOInputType)inputType
 {
-  _nameStr = inputedName;
+  switch (inputType) {
+    case SHOInputTypeName:
+      _currentName = inputedValue;
+      break;
+
+    case SHOInputTypeJob:
+      _currentJob = inputedValue;
+      break;
+  }
+
   [_myTableView reloadData];
 }
 

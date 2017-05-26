@@ -1,18 +1,19 @@
+
 //
-//  NotificationJobViewController.m
+//  BlockInputViewController.m
 //  demo-passing-data-back
 //
-//  Created by shoshino21 on 5/26/17.
+//  Created by shoshino21 on 5/27/17.
 //  Copyright © 2017 shoshino21. All rights reserved.
 //
 
-#import "NotificationJobViewController.h"
+#import "BlockInputViewController.h"
 
-@interface NotificationJobViewController ()
+@interface BlockInputViewController ()
 
 @end
 
-@implementation NotificationJobViewController
+@implementation BlockInputViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

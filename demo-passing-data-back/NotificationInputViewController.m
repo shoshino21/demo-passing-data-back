@@ -1,18 +1,18 @@
 //
-//  BlockNameViewController.m
+//  NotificationInputViewController.m
 //  demo-passing-data-back
 //
-//  Created by shoshino21 on 5/26/17.
+//  Created by shoshino21 on 5/27/17.
 //  Copyright © 2017 shoshino21. All rights reserved.
 //
 
-#import "BlockNameViewController.h"
+#import "NotificationInputViewController.h"
 
-@interface BlockNameViewController ()
+@interface NotificationInputViewController ()
 
 @end
 
-@implementation BlockNameViewController
+@implementation NotificationInputViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

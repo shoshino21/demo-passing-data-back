@@ -15,15 +15,19 @@
 
 @interface BlockMainViewController () <UITableViewDataSource, UITableViewDelegate> {
   UITableView *_myTableView;
+  BlockInputViewController *inputViewCtrl;
+
   NSString *_currentName;
   NSString *_currentJob;
 }
 
-@property (nonatomic, strong) BlockInputViewController *inputViewCtrl;
+@property (nonatomic, strong, readonly) BlockInputViewController *inputViewCtrl;
 
 @end
 
 @implementation BlockMainViewController
+
+@synthesize inputViewCtrl = _inputViewCtrl;
 
 #pragma mark - Lifecycle
 

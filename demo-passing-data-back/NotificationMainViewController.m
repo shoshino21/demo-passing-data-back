@@ -11,15 +11,19 @@
 
 @interface NotificationMainViewController () <UITableViewDataSource, UITableViewDelegate> {
   UITableView *_myTableView;
+  NotificationInputViewController *_inputViewCtrl;
+
   NSString *_currentName;
   NSString *_currentJob;
 }
 
-@property (nonatomic, strong) NotificationInputViewController *inputViewCtrl;
+@property (nonatomic, strong, readonly) NotificationInputViewController *inputViewCtrl;
 
 @end
 
 @implementation NotificationMainViewController
+
+@synthesize inputViewCtrl = _inputViewCtrl;
 
 #pragma mark - Lifecycle
 

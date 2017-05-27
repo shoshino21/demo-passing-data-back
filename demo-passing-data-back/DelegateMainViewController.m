@@ -11,15 +11,19 @@
 
 @interface DelegateMainViewController () <UITableViewDataSource, UITableViewDelegate, SHOInputDelegate> {
   UITableView *_myTableView;
+  DelegateInputViewController *inputViewCtrl;
+
   NSString *_currentName;
   NSString *_currentJob;
 }
 
-@property (nonatomic, strong) DelegateInputViewController *inputViewCtrl;
+@property (nonatomic, strong, readonly) DelegateInputViewController *inputViewCtrl;
 
 @end
 
 @implementation DelegateMainViewController
+
+@synthesize inputViewCtrl = _inputViewCtrl;
 
 #pragma mark - Lifecycle
 

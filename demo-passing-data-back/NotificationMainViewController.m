@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.view.backgroundColor = [UIColor whiteColor];
+  self.view.backgroundColor = [UIColor greenColor];
 
   [self initProperties];
   [self initTableView];
@@ -54,6 +54,7 @@
   _myTableView.dataSource = self;
   _myTableView.delegate = self;
   _myTableView.backgroundColor = [UIColor whiteColor];
+  _myTableView.alpha = 0.9f;
 
   [self.view addSubview:_myTableView];
 }

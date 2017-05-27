@@ -14,6 +14,8 @@
 
 @end
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation NotificationInputViewController
 
 #pragma mark - Lifecycle
@@ -77,7 +79,6 @@
 
 - (IBAction)donePressed:(id)sender {
   self.inputValue = _textField.text;
-
   [self postValueChangedNotification];
 
   [self.navigationController popViewControllerAnimated:YES];

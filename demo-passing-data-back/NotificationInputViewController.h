@@ -15,6 +15,8 @@ typedef NS_ENUM(NSUInteger, SHOInputType) {
   SHOInputTypeJob
 };
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface NotificationInputViewController : UIViewController
 
 @property (nonatomic, assign) SHOInputType inputType;

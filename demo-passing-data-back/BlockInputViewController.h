@@ -11,9 +11,14 @@ typedef NS_ENUM(NSUInteger, SHOInputType) {
   SHOInputTypeJob
 };
 
+typedef void(^SHOInputCompletionHandler)(NSString *inputValue);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @interface BlockInputViewController : UIViewController
 
 @property (nonatomic, assign) SHOInputType inputType;
 @property (nonatomic, strong) NSString *inputValue;
+@property (nonatomic, copy) SHOInputCompletionHandler completionHandler;
 
 @end

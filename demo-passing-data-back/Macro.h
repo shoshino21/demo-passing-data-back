@@ -10,3 +10,6 @@
 #define kScreenWidth      kScreenBounds.size.width
 #define kScreenHeight     kScreenBounds.size.height
 #define kStatusBarHeight  [UIApplication sharedApplication].statusBarFrame.size.height
+
+#define declareWeakSelf()   __weak __typeof(self) weakSelf = self;
+#define declareStrongSelf() __strong __typeof(weakSelf) strongSelf = weakSelf

@@ -14,6 +14,8 @@
 
 @end
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation BlockInputViewController
 
 #pragma mark - Lifecycle
@@ -77,6 +79,10 @@
 
 - (IBAction)donePressed:(id)sender {
   self.inputValue = _textField.text;
+
+  if (_completionHandler) {
+    _completionHandler(_inputValue);
+  }
 
   [self.navigationController popViewControllerAnimated:YES];
 }

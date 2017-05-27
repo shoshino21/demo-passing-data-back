@@ -9,13 +9,9 @@
 #import "BlockMainViewController.h"
 #import "BlockInputViewController.h"
 
-@interface BlockMainViewController ()
-
-@end
-
 @interface BlockMainViewController () <UITableViewDataSource, UITableViewDelegate> {
   UITableView *_myTableView;
-  BlockInputViewController *inputViewCtrl;
+  BlockInputViewController *_inputViewCtrl;
 
   NSString *_currentName;
   NSString *_currentJob;
@@ -24,6 +20,8 @@
 @property (nonatomic, strong, readonly) BlockInputViewController *inputViewCtrl;
 
 @end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation BlockMainViewController
 
@@ -74,8 +72,10 @@
 #pragma mark - Private Methods
 
 - (void)reloadRowWithInputType:(SHOInputType)inputType {
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:inputType inSection:0];
-  [_myTableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:NO];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:inputType inSection:0];
+    [_myTableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:NO];
+  });
 }
 
 #pragma mark - UITableView
@@ -115,16 +115,36 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  declareWeakSelf();
+
   switch (indexPath.row) {
-    case SHOInputTypeName:
+    case SHOInputTypeName: {
       self.inputViewCtrl.inputType = SHOInputTypeName;
       self.inputViewCtrl.inputValue = _currentName;
-      break;
 
-    case SHOInputTypeJob:
+      self.inputViewCtrl.completionHandler = ^(NSString *inputValue) {
+        declareStrongSelf();
+
+        strongSelf->_currentName = inputValue;
+        [strongSelf reloadRowWithInputType:indexPath.row];
+      };
+
+      break;
+    }
+
+    case SHOInputTypeJob: {
       self.inputViewCtrl.inputType = SHOInputTypeJob;
       self.inputViewCtrl.inputValue = _currentJob;
+
+      self.inputViewCtrl.completionHandler = ^(NSString *inputValue) {
+        declareStrongSelf();
+
+        strongSelf->_currentJob = inputValue;
+        [strongSelf reloadRowWithInputType:indexPath.row];
+      };
+
       break;
+    }
   }
 
   [self.navigationController pushViewController:self.inputViewCtrl animated:YES];

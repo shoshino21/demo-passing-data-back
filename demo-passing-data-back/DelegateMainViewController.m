@@ -11,7 +11,7 @@
 
 @interface DelegateMainViewController () <UITableViewDataSource, UITableViewDelegate, SHOInputDelegate> {
   UITableView *_myTableView;
-  DelegateInputViewController *inputViewCtrl;
+  DelegateInputViewController *_inputViewCtrl;
 
   NSString *_currentName;
   NSString *_currentJob;
@@ -20,6 +20,8 @@
 @property (nonatomic, strong, readonly) DelegateInputViewController *inputViewCtrl;
 
 @end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation DelegateMainViewController
 
@@ -71,8 +73,10 @@
 #pragma mark - Private Methods
 
 - (void)reloadRowWithInputType:(SHOInputType)inputType {
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:inputType inSection:0];
-  [_myTableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:NO];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:inputType inSection:0];
+    [_myTableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:NO];
+  });
 }
 
 #pragma mark - UITableView

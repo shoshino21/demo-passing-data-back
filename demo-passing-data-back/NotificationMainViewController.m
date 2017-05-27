@@ -21,6 +21,8 @@
 
 @end
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 @implementation NotificationMainViewController
 
 @synthesize inputViewCtrl = _inputViewCtrl;
@@ -108,12 +110,15 @@
       break;
   }
 
+  // 只更新對應的資料列
   [self reloadRowWithInputType:inputType];
 }
 
 - (void)reloadRowWithInputType:(SHOInputType)inputType {
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:inputType inSection:0];
-  [_myTableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:NO];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:inputType inSection:0];
+    [_myTableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:NO];
+  });
 }
 
 #pragma mark - UITableView

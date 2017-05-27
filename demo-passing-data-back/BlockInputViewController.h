@@ -13,6 +13,7 @@ typedef NS_ENUM(NSUInteger, SHOInputType) {
 
 @interface BlockInputViewController : UIViewController
 
-- (void)settingInputType:(SHOInputType)inputType currentValue:(NSString *)currentValue;
+@property (nonatomic, assign) SHOInputType inputType;
+@property (nonatomic, strong) NSString *inputValue;
 
 @end

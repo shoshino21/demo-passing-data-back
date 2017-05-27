@@ -27,6 +27,7 @@ typedef NS_ENUM(NSUInteger, SHOInputType) {
 
 @property (nonatomic, weak) id<SHOInputDelegate> delegate;
 
-- (void)settingInputType:(SHOInputType)inputType currentValue:(NSString *)currentValue;
+@property (nonatomic, assign) SHOInputType inputType;
+@property (nonatomic, strong) NSString *inputValue;
 
 @end

@@ -67,6 +67,13 @@
   return _inputViewCtrl;
 }
 
+#pragma mark - Private Methods
+
+- (void)reloadRowWithInputType:(SHOInputType)inputType {
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:inputType inSection:0];
+  [_myTableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:NO];
+}
+
 #pragma mark - UITableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -106,11 +113,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   switch (indexPath.row) {
     case SHOInputTypeName:
-      [self.inputViewCtrl settingInputType:SHOInputTypeName currentValue:_currentName];
+      self.inputViewCtrl.inputType = SHOInputTypeName;
+      self.inputViewCtrl.inputValue = _currentName;
       break;
 
     case SHOInputTypeJob:
-      [self.inputViewCtrl settingInputType:SHOInputTypeJob currentValue:_currentJob];
+      self.inputViewCtrl.inputType = SHOInputTypeJob;
+      self.inputViewCtrl.inputValue = _currentJob;
       break;
   }
 

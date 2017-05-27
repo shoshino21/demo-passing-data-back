@@ -10,8 +10,6 @@
 
 @interface NotificationInputViewController () <UITextFieldDelegate> {
   UITextField *_textField;
-  SHOInputType _inputType;
-  NSString *_inputValue;
 }
 
 @end
@@ -32,6 +30,8 @@
   [super viewWillAppear:animated];
 
   [self refreshTitleAndValue];
+
+  // 進入輸入畫面直接顯示螢幕鍵盤
   [self showKeyboardInstantly];
 }
 
@@ -64,6 +64,7 @@
     case SHOInputTypeName:
       self.navigationItem.title = kFieldTitleName;
       break;
+
     case SHOInputTypeJob:
       self.navigationItem.title = kFieldTitleJob;
       break;
@@ -72,22 +73,26 @@
   _textField.text = _inputValue;
 }
 
-#pragma mark - Public Methods
-
-- (void)settingInputType:(SHOInputType)inputType currentValue:(NSString *)currentValue {
-  _inputType = inputType;
-  _inputValue = currentValue;
-}
-
 #pragma mark - Actions
 
 - (IBAction)donePressed:(id)sender {
-  _inputValue = _textField.text;
+  self.inputValue = _textField.text;
+
+  [self postValueChangedNotification];
 
   [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - Helper Methods
+#pragma mark - Private Methods
+
+- (void)postValueChangedNotification {
+  NSDictionary *userInfoDict = @{ kNotifyInputType  : @(_inputType),
+                                  kNotifyInputValue : _inputValue };
+
+  [[NSNotificationCenter defaultCenter] postNotificationName:kValueChangedNotification
+                                                      object:nil
+                                                    userInfo:userInfoDict];
+}
 
 - (void)showKeyboardInstantly {
   [_textField becomeFirstResponder];

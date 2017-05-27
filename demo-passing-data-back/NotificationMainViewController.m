@@ -29,11 +29,17 @@
 
   [self initProperties];
   [self initTableView];
+
+  [self addObservers];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   self.navigationItem.title = kTabTitleNotification;
+}
+
+- (void)dealloc {
+  [self removeObservers];
 }
 
 #pragma mark - Initialize
@@ -52,6 +58,19 @@
   [self.view addSubview:_myTableView];
 }
 
+#pragma mark -- Notification
+
+- (void)addObservers {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(receiveValueChangedNotification:)
+                                               name:kValueChangedNotification
+                                             object:nil];
+}
+
+- (void)removeObservers {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - Custom Accessors
 
 - (NotificationInputViewController *)inputViewCtrl {
@@ -61,6 +80,36 @@
   }
 
   return _inputViewCtrl;
+}
+
+#pragma mark - Private Methods
+
+- (void)receiveValueChangedNotification:(NSNotification *)noti {
+  NSDictionary *userInfoDict = noti.userInfo;
+
+  if (![userInfoDict isKindOfClass:[NSDictionary class]]) {
+    return;
+  }
+
+  SHOInputType inputType = [userInfoDict[kNotifyInputType] integerValue];
+  NSString *inputValue = userInfoDict[kNotifyInputValue];
+
+  switch (inputType) {
+    case SHOInputTypeName:
+      _currentName = inputValue;
+      break;
+
+    case SHOInputTypeJob:
+      _currentJob = inputValue;
+      break;
+  }
+
+  [self reloadRowWithInputType:inputType];
+}
+
+- (void)reloadRowWithInputType:(SHOInputType)inputType {
+  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:inputType inSection:0];
+  [_myTableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:NO];
 }
 
 #pragma mark - UITableView
@@ -82,6 +131,7 @@
                                   reuseIdentifier:cellIdentifierStr];
   }
 
+  // 移除選擇欄位時的陰影
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
   switch (indexPath.row) {
@@ -102,11 +152,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   switch (indexPath.row) {
     case SHOInputTypeName:
-      [self.inputViewCtrl settingInputType:SHOInputTypeName currentValue:_currentName];
+      self.inputViewCtrl.inputType = SHOInputTypeName;
+      self.inputViewCtrl.inputValue = _currentName;
       break;
 
     case SHOInputTypeJob:
-      [self.inputViewCtrl settingInputType:SHOInputTypeJob currentValue:_currentJob];
+      self.inputViewCtrl.inputType = SHOInputTypeJob;
+      self.inputViewCtrl.inputValue = _currentJob;
       break;
   }
 

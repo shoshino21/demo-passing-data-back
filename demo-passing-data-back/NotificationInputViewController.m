@@ -37,6 +37,10 @@
   [self showKeyboardInstantly];
 }
 
+- (void)dealloc {
+  NSLog(@"%@ dealloc", [self class]);
+}
+
 #pragma mark - Initialize
 
 - (void)initTextField {
@@ -79,21 +83,18 @@
 
 - (IBAction)donePressed:(id)sender {
   self.inputValue = _textField.text;
-  [self postValueChangedNotification];
-
-  [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - Private Methods
-
-- (void)postValueChangedNotification {
+  
   NSDictionary *userInfoDict = @{ kNotifyInputType  : @(_inputType),
                                   kNotifyInputValue : _inputValue };
 
   [[NSNotificationCenter defaultCenter] postNotificationName:kValueChangedNotification
                                                       object:nil
                                                     userInfo:userInfoDict];
+
+  [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - Private Methods
 
 - (void)showKeyboardInstantly {
   [_textField becomeFirstResponder];

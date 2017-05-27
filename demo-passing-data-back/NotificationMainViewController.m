@@ -11,21 +11,15 @@
 
 @interface NotificationMainViewController () <UITableViewDataSource, UITableViewDelegate> {
   UITableView *_myTableView;
-  NotificationInputViewController *_inputViewCtrl;
-
   NSString *_currentName;
   NSString *_currentJob;
 }
-
-@property (nonatomic, strong, readonly) NotificationInputViewController *inputViewCtrl;
 
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation NotificationMainViewController
-
-@synthesize inputViewCtrl = _inputViewCtrl;
 
 #pragma mark - Lifecycle
 
@@ -77,42 +71,7 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - Custom Accessors
-
-- (NotificationInputViewController *)inputViewCtrl {
-  // Lazy loading
-  if (!_inputViewCtrl) {
-    _inputViewCtrl = [NotificationInputViewController new];
-  }
-
-  return _inputViewCtrl;
-}
-
 #pragma mark - Private Methods
-
-- (void)receiveValueChangedNotification:(NSNotification *)noti {
-  NSDictionary *userInfoDict = noti.userInfo;
-
-  if (![userInfoDict isKindOfClass:[NSDictionary class]]) {
-    return;
-  }
-
-  SHOInputType inputType = [userInfoDict[kNotifyInputType] integerValue];
-  NSString *inputValue = userInfoDict[kNotifyInputValue];
-
-  switch (inputType) {
-    case SHOInputTypeName:
-      _currentName = inputValue;
-      break;
-
-    case SHOInputTypeJob:
-      _currentJob = inputValue;
-      break;
-  }
-
-  // 只更新對應的資料列
-  [self reloadRowWithInputType:inputType];
-}
 
 - (void)reloadRowWithInputType:(SHOInputType)inputType {
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -159,19 +118,50 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  NotificationInputViewController *inputViewCtrl = [NotificationInputViewController new];
+
   switch (indexPath.row) {
     case SHOInputTypeName:
-      self.inputViewCtrl.inputType = SHOInputTypeName;
-      self.inputViewCtrl.inputValue = _currentName;
+      inputViewCtrl.inputType = SHOInputTypeName;
+      inputViewCtrl.inputValue = _currentName;
       break;
 
     case SHOInputTypeJob:
-      self.inputViewCtrl.inputType = SHOInputTypeJob;
-      self.inputViewCtrl.inputValue = _currentJob;
+      inputViewCtrl.inputType = SHOInputTypeJob;
+      inputViewCtrl.inputValue = _currentJob;
       break;
   }
 
-  [self.navigationController pushViewController:self.inputViewCtrl animated:YES];
+  [self.navigationController pushViewController:inputViewCtrl animated:YES];
+}
+
+#pragma mark - Value changed
+
+/**
+ 接收到修改值通知後的處理
+ */
+- (void)receiveValueChangedNotification:(NSNotification *)noti {
+  NSDictionary *userInfoDict = noti.userInfo;
+
+  if (![userInfoDict isKindOfClass:[NSDictionary class]]) {
+    return;
+  }
+
+  SHOInputType inputType = [userInfoDict[kNotifyInputType] integerValue];
+  NSString *inputValue = userInfoDict[kNotifyInputValue];
+
+  switch (inputType) {
+    case SHOInputTypeName:
+      _currentName = inputValue;
+      break;
+
+    case SHOInputTypeJob:
+      _currentJob = inputValue;
+      break;
+  }
+
+  // 只更新對應的資料列
+  [self reloadRowWithInputType:inputType];
 }
 
 @end

@@ -11,21 +11,15 @@
 
 @interface BlockMainViewController () <UITableViewDataSource, UITableViewDelegate> {
   UITableView *_myTableView;
-  BlockInputViewController *_inputViewCtrl;
-
   NSString *_currentName;
   NSString *_currentJob;
 }
-
-@property (nonatomic, strong, readonly) BlockInputViewController *inputViewCtrl;
 
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation BlockMainViewController
-
-@synthesize inputViewCtrl = _inputViewCtrl;
 
 #pragma mark - Lifecycle
 
@@ -56,17 +50,6 @@
   _myTableView.backgroundColor = [UIColor whiteColor];
 
   [self.view addSubview:_myTableView];
-}
-
-#pragma mark - Custom Accessors
-
-- (BlockInputViewController *)inputViewCtrl {
-  // Lazy loading
-  if (!_inputViewCtrl) {
-    _inputViewCtrl = [BlockInputViewController new];
-  }
-
-  return _inputViewCtrl;
 }
 
 #pragma mark - Private Methods
@@ -116,13 +99,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   declareWeakSelf();
+  BlockInputViewController *inputViewCtrl = [BlockInputViewController new];
 
   switch (indexPath.row) {
     case SHOInputTypeName: {
-      self.inputViewCtrl.inputType = SHOInputTypeName;
-      self.inputViewCtrl.inputValue = _currentName;
+      inputViewCtrl.inputType = SHOInputTypeName;
+      inputViewCtrl.inputValue = _currentName;
 
-      self.inputViewCtrl.completionHandler = ^(NSString *inputValue) {
+      // 以 block 帶入修改值後的對應處理
+      // (注意 retain cycle issue)
+      inputViewCtrl.completionHandler = ^(NSString *inputValue) {
         declareStrongSelf();
 
         strongSelf->_currentName = inputValue;
@@ -133,10 +119,10 @@
     }
 
     case SHOInputTypeJob: {
-      self.inputViewCtrl.inputType = SHOInputTypeJob;
-      self.inputViewCtrl.inputValue = _currentJob;
+      inputViewCtrl.inputType = SHOInputTypeJob;
+      inputViewCtrl.inputValue = _currentJob;
 
-      self.inputViewCtrl.completionHandler = ^(NSString *inputValue) {
+      inputViewCtrl.completionHandler = ^(NSString *inputValue) {
         declareStrongSelf();
 
         strongSelf->_currentJob = inputValue;
@@ -147,7 +133,7 @@
     }
   }
 
-  [self.navigationController pushViewController:self.inputViewCtrl animated:YES];
+  [self.navigationController pushViewController:inputViewCtrl animated:YES];
 }
 
 @end

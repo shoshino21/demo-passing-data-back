@@ -11,21 +11,15 @@
 
 @interface DelegateMainViewController () <UITableViewDataSource, UITableViewDelegate, SHOInputDelegate> {
   UITableView *_myTableView;
-  DelegateInputViewController *_inputViewCtrl;
-
   NSString *_currentName;
   NSString *_currentJob;
 }
-
-@property (nonatomic, strong, readonly) DelegateInputViewController *inputViewCtrl;
 
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation DelegateMainViewController
-
-@synthesize inputViewCtrl = _inputViewCtrl;
 
 #pragma mark - Lifecycle
 
@@ -56,18 +50,6 @@
   _myTableView.backgroundColor = [UIColor whiteColor];
 
   [self.view addSubview:_myTableView];
-}
-
-#pragma mark - Custom Accessors
-
-- (DelegateInputViewController *)inputViewCtrl {
-  // Lazy loading
-  if (!_inputViewCtrl) {
-    _inputViewCtrl = [DelegateInputViewController new];
-    _inputViewCtrl.delegate = self;
-  }
-
-  return _inputViewCtrl;
 }
 
 #pragma mark - Private Methods
@@ -116,23 +98,29 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  DelegateInputViewController *inputViewCtrl = [DelegateInputViewController new];
+  inputViewCtrl.delegate = self;
+
   switch (indexPath.row) {
     case SHOInputTypeName:
-      self.inputViewCtrl.inputType = SHOInputTypeName;
-      self.inputViewCtrl.inputValue = _currentName;
+      inputViewCtrl.inputType = SHOInputTypeName;
+      inputViewCtrl.inputValue = _currentName;
       break;
 
     case SHOInputTypeJob:
-      self.inputViewCtrl.inputType = SHOInputTypeJob;
-      self.inputViewCtrl.inputValue = _currentJob;
+      inputViewCtrl.inputType = SHOInputTypeJob;
+      inputViewCtrl.inputValue = _currentJob;
       break;
   }
 
-  [self.navigationController pushViewController:self.inputViewCtrl animated:YES];
+  [self.navigationController pushViewController:inputViewCtrl animated:YES];
 }
 
 #pragma mark - SHOInputDelegate
 
+/**
+ 修改值後的對應處理
+ */
 - (void)viewController:(DelegateInputViewController *)aViewCtrl
     didFinishInputting:(NSString *)inputedValue
              inputType:(SHOInputType)inputType

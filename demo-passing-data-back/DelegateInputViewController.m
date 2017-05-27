@@ -37,6 +37,10 @@
   [self showKeyboardInstantly];
 }
 
+- (void)dealloc {
+  NSLog(@"%@ dealloc", [self class]);
+}
+
 #pragma mark - Initialize
 
 - (void)initTextField {

@@ -31,17 +31,7 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 
-  switch (_inputType) {
-    case SHOInputTypeName:
-      self.navigationItem.title = kFieldTitleName;
-      break;
-    case SHOInputTypeJob:
-      self.navigationItem.title = kFieldTitleJob;
-      break;
-  }
-
-  _textField.text = _inputValue;
-
+  [self refreshTitleAndValue];
   [self showKeyboardInstantly];
 }
 
@@ -67,6 +57,19 @@
                                                 action:@selector(donePressed:)];
 
   self.navigationItem.rightBarButtonItem = doneBarButton;
+}
+
+- (void)refreshTitleAndValue {
+  switch (_inputType) {
+    case SHOInputTypeName:
+      self.navigationItem.title = kFieldTitleName;
+      break;
+    case SHOInputTypeJob:
+      self.navigationItem.title = kFieldTitleJob;
+      break;
+  }
+
+  _textField.text = _inputValue;
 }
 
 #pragma mark - Public Methods

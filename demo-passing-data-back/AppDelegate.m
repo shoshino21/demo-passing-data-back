@@ -21,18 +21,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Override point for customization after application launch.
+  UIImage *iconImage = [UIImage imageNamed:@"icon-home"];
 
   DelegateMainViewController *dmvc = [DelegateMainViewController new];
   UINavigationController *dnc = [[UINavigationController alloc] initWithRootViewController:dmvc];
-  dnc.tabBarItem = [[UITabBarItem alloc] initWithTitle:kTabTitle1 image:nil tag:0];
+  dnc.tabBarItem = [[UITabBarItem alloc] initWithTitle:kTabTitleDelegate image:iconImage tag:0];
 
   BlockMainViewController *bmvc = [BlockMainViewController new];
   UINavigationController *bnc = [[UINavigationController alloc] initWithRootViewController:bmvc];
-  bnc.tabBarItem = [[UITabBarItem alloc] initWithTitle:kTabTitle2 image:nil tag:0];
+  bnc.tabBarItem = [[UITabBarItem alloc] initWithTitle:kTabTitleBlock image:iconImage tag:1];
 
   NotificationMainViewController *nmvc = [NotificationMainViewController new];
   UINavigationController *nnc = [[UINavigationController alloc] initWithRootViewController:nmvc];
-  nnc.tabBarItem = [[UITabBarItem alloc] initWithTitle:kTabTitle3 image:nil tag:0];
+  nnc.tabBarItem = [[UITabBarItem alloc] initWithTitle:kTabTitleNotification image:iconImage tag:2];
 
   UITabBarController *tbc = [UITabBarController new];
   tbc.viewControllers = @[ dnc, bnc, nnc ];

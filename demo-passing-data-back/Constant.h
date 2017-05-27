@@ -10,9 +10,9 @@ static CGFloat const kDefaultTextFieldHeight = 31.f;
 static CGFloat const kDefaultNavigationBarHeight = 44.f;
 static CGFloat const kDefaultTabBarHeight = 49.f;
 
-static NSString *const kTabTitle1 = @"Delegate";
-static NSString *const kTabTitle2 = @"Block";
-static NSString *const kTabTitle3 = @"Notification";
+static NSString *const kTabTitleDelegate = @"Delegate";
+static NSString *const kTabTitleBlock = @"Block";
+static NSString *const kTabTitleNotification = @"Notification";
 
 static NSString *const kFieldTitleName = @"Name";
 static NSString *const kFieldTitleJob = @"Job";

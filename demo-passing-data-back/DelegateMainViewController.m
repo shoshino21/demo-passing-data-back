@@ -33,7 +33,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  self.navigationItem.title = kTabTitle1;
+  self.navigationItem.title = kTabTitleDelegate;
 }
 
 #pragma mark - Initialize

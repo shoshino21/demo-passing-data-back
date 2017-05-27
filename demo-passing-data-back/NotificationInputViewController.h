@@ -6,8 +6,13 @@
 //  Copyright © 2017 shoshino21. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+typedef NS_ENUM(NSUInteger, SHOInputType) {
+  SHOInputTypeName = 0,
+  SHOInputTypeJob
+};
 
 @interface NotificationInputViewController : UIViewController
+
+- (void)settingInputType:(SHOInputType)inputType currentValue:(NSString *)currentValue;
 
 @end
